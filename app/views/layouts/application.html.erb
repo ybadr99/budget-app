@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BudgetApp</title>
+    <title>RailsBudgetApp</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,6 +11,30 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="alert-container">
+        <% flash.each do |type, msg| %>
+          <%if type == "notice"%>
+            <div class="w-100 alert alert-success d-flex align-items-center alert-dismissible fade show alert-component" role="alert">
+              <i class="bi bi-check-circle-fill me-2"></i>
+              <div>
+                <%=msg%>
+              </div>
+              <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+            </div>
+          <%else%>
+            <div class="w-100 alert alert-warning d-flex align-items-center alert-dismissible fade show alert-component" role="alert">
+              <i class="bi bi-exclamation-triangle-fill me-2"></i>
+              <div>
+                <%=msg%>
+              </div>
+              <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+            </div>
+          <%end%>
+      <%end%>
+    </div>
+
+    <div class="main-container m-auto bg-body-secondary">
+      <%= yield %>
+    </div>
   </body>
 </html>

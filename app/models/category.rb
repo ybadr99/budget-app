@@ -1,6 +1,5 @@
 class Category < ApplicationRecord
-  has_many :transactions, through: :category_transtactions, dependent: :destroy
-  has_many :category_transtactions, dependent: :destroy
-  validates :name, presence: true
-  validates :icon, presence: true
+  has_many :category_transactions, dependent: :destroy
+  has_many :expenses, through: :category_transactions, dependent: :destroy, class_name: 'Transaction'
+  validates :name, :icon, :user_id, presence: true
 end
